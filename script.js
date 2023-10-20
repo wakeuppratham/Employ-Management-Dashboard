@@ -20,21 +20,19 @@ submitBtn = document.querySelector('.submitBtn'),
   email = document.getElementById("email"),
   phone = document.getElementById("phone"),
   entries = document.querySelector(".showEntries"),
-  tabSize = document.getElementById("table_size"),
   userInfo = document.querySelector(".userInfo"),
   table = document.querySelector("table"),
-  filterData = document.getElementById("search")
+  filterData = document.getElementById("search");
 
 
-
-document.querySelector("form").addEventListener('submit',(e)=>{
+document.querySelector("form").addEventListener("submit",(e)=>{
     e.preventDefault();
 
     console.log("submitted");
 
     const info = {
         id: Date.now(),
-        // picture: imgInput.src == undefined ? "./img/pic1.png" :imgInput.src,
+        // picture: imgInput.src == undefined ? "./img/pic1.jpg" :imgInput.src,
         fName: fName.value,
         lName: lName.value,
         ageVal: age.value,
@@ -51,4 +49,23 @@ const userJSON = JSON.stringify(info);
 // Store the JSON string in local storage with a specific key
 localStorage.setItem('userInfo', userJSON);
 
-})
+darkBg.classList.remove('active')
+popupForm.classList.remove('active')
+form.reset()
+
+});
+
+newMemberAddBtn.addEventListener("click",(e)=>{
+    darkBg.classList.add('active')
+    popupForm.classList.add('active')
+});
+
+crossBtn.addEventListener("click",(e)=>{
+    darkBg.classList.remove('active')
+    popupForm.classList.remove('active')
+    form.reset();
+});
+
+
+  
+
