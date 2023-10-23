@@ -174,7 +174,7 @@ table td button {
     color: var(--dark8);
     font-size: 15px;
     cursor: pointer;
-    pointer-events: none;
+    /* pointer-events: none; */
     outline: none;
     border: 1px solid var(dark7);
 
