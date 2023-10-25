@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100;200;300;400&display=swap');
 
 
@@ -369,4 +370,376 @@ input::-webkit-outer-spin-button{
     transform: scale(1);
     opacity: 1;
     visibility: visible;
+=======
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100;200;300;400&display=swap');
+
+
+:root {
+    --dark1: #0000004d;
+    --dark2: #181c20;
+    --dark3: #212529;
+    --dark4: #2d3135;
+    --dark5: #424549;
+    --dark6: #404346;
+    --dark7: #9c9c9c;
+    --dark8: #dae0e7;
+    --dark9: #262a2e;
+    --red1: #902e31;
+    --blue1: #279EFF
+        /*;
+    --grey1:#526D82;
+    --blue2:#98E4FF;
+    --blue3:#362FD9; */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: linear-gradient(var(--blue1)50%, var(--dark2)50%);
+}
+
+.container {
+    height: 81vh;
+    padding: 20px;
+    box-shadow: 3px 3px 20px (var(--dark1));
+    background: var(--dark3);
+    border-radius: 10px;
+    margin: 15px;
+    margin-top: 50px;
+}
+
+/* search box css */
+
+.container header .filterEntries {
+    margin-bottom: 20px;
+}
+
+.filterEntries .filter input {
+    padding: 10px 15px;
+    border: 1px solid var(--dark6);
+    color: white;
+    background: var(--dark4);
+    border-radius: 5px;
+    outline: none;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.filter label {
+    color: var(--dark8);
+    margin-right: 5px;
+}
+
+
+.filter input:focus {
+    border-color: var(dark7);
+}
+
+/* member Button */
+
+.addMemberBtn {
+    margin-bottom: 20px;
+}
+
+.addMemberBtn button:hover {
+    background-color: var(--dark5);
+}
+
+
+/* all buttons */
+
+header .addMemberBtn button,
+.closeBtn,
+.submitBtn {
+    padding: 10px 15px;
+    /* background: var(--dark4); */
+    color: var(--dark8);
+    background: transparent;
+    font-size: 15px;
+    cursor: pointer;
+    pointer-events: auto;
+    border-radius: 5px;
+    border: 1px solid var(--dark6);
+    outline: none;
+}
+
+/* Table */
+
+.container table {
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table .heading {
+    /* background: var(--dark5); */
+    background: transparent;
+    color: var(--dark8);
+}
+
+tr{
+    height: 80px;
+}
+
+table .heading:hover {
+    background: var(--dark6);
+    transition: 0.5s;
+
+}
+
+table tr th {
+    padding: 12px 15px;
+}
+
+table tr td {
+    padding: 3px 15px;
+    color: var(--dark8);
+    /* vertical-align: middle; */
+}
+
+/* table tr td:nth-child(1), table tr td:nth-child(2){
+    text-align: center;
+}  */
+
+table tr td img {
+    vertical-align: middle;
+}
+
+
+table tr:hover {
+    cursor: pointer;
+    background: var(--dark9);
+}
+
+table tr td {
+    border-bottom: 1px solid var(--dark6);
+    font-size: 15px;
+}
+
+
+table tbody tr:first-child td {
+    border-top: 1px solid var(--dark6);
+}
+
+/* selects 1,3,5... */
+table tbody tr:nth-child(odd) {
+    background: var(--dark9);
+}
+
+/* table tbody tr:nth-child(odd)>td:nth-child(3){
+    background: var(--dark4);
+} */
+
+table td button {
+    margin: 0px 3px;
+    padding: 5px;
+    width: 40px;
+    background: var(--dark5);
+    color: var(--dark8);
+    font-size: 15px;
+    cursor: pointer;
+    /* pointer-events: none; */
+    outline: none;
+    border: 1px solid var(dark7);
+
+}
+
+
+/* Popup Form */
+
+.dark_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.popup {
+    border-radius: 5px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.3);
+    background: var(--dark6);
+    transition: 0.5s;
+    user-select: none;
+    transform: scale(1);
+   
+    opacity: 0;
+    visibility: hidden; 
+}
+
+.popup header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--dark7);
+}
+
+.popup header .closeBtn {
+    font-size: 30px;
+    font-weight: 300;
+    padding: 0px 15px;
+}
+
+.popup header .closeBtn:hover,
+.popup .submitBtn:hover {
+    /* background-color: var(--dark7); */
+    border-color: var(--dark8);
+    transition: 0.5s;
+}
+
+.popup footer {
+    border-top: 1px solid var(--dark7);
+    padding: 10px 20px;
+    text-align: right;
+}
+
+
+.popup form {
+    padding: 10px 20px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.popup .imgholder {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin-right: 50px;
+    margin-top: 15px;
+    /* position: relative;
+    background:rgba(0, 0, 0, 0.3) ; */
+
+}
+
+
+.popup .imgholder .upload{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+     width: 40px;
+    height: 80px;
+    /* background: rgba(0,0,0,0.3);  */
+
+     /* z-index: 1; 
+     cursor: pointer;  */
+     display: flex-start; 
+}
+
+
+
+/* .imgholder:hover .upload{
+    display: flex;
+} */
+
+
+/* .imgholder .upload input{
+     display: none; 
+}  */
+
+/* 
+ .imgholder .upload i{
+    color: #fff;
+    size: 40px;
+    font-weight: 300;
+}  */
+
+/* .imgholder .img{
+    width: 100%;
+    height: 100%;
+}   */
+
+
+
+
+
+/* Input Fields */
+
+.nameField , .ageCityField , .postSalary{
+    display:flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+
+ /* .nameField input,.ageCityField input,.postSalary input{
+    width: 200px;
+} */
+
+form .inputFieldContainer .nameField input,
+form .inputFieldContainer .ageCityField input,
+form .inputFieldContainer .postSalary input{
+    width: 200px;
+}
+
+ /* .form_control{
+    margin: 10px 0;
+} */
+
+
+.inputFieldContainer .form_control{
+    margin: 10px 0;
+}
+
+.inputFieldContainer .form_control label{
+    display: block;
+    margin-bottom: 5px;
+    color: var(--dark8);
+}
+.ageCityField .form_control{
+    flex: 1;
+}
+.postSalary .form_control{
+    flex: 1;
+}
+.form_control input{
+    padding: 10px;
+    background: var(--dark4);
+    color: var(--dark8);
+    border: 1px solid var(--dark6);
+    outline: none;
+    border-radius: 5px;
+    transition: 0.5s;
+    width: 100%;
+    
+}
+
+
+.form_control input:focus,
+.form_control input:valid{
+    border-color: var(--dark7);
+}
+
+/* removes default number inc/dec */
+
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button{
+    display: none;
+}
+
+
+/* Active Class */
+
+.active{
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+>>>>>>> 7216825 (Bug fixed)
 }
