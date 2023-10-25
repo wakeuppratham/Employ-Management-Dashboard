@@ -25,6 +25,8 @@ var newMemberAddBtn = document.querySelector('.addMemberBtn'),
     table = document.querySelector("table"),
     filterData = document.getElementById("search");
 
+    let isEdit=false, editId;
+
 // Data from localStorage
 let originalData = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : [];
 console.log(originalData);
@@ -131,7 +133,7 @@ function readInfo(pic, fname, lname, Age, City, Position, Salary, SDate, Email, 
 
 // Function to populate form fields for editing
 function editInfo(id, pic, fname, lname, Age, City, Position, Salary, SDate, Email, Phone) {
-    isEdit = true;
+    isEdit = true; // displaying form is in edit mode
     editId = id;
 
     const originalIndex = originalData.findIndex(item => item.id === id);
@@ -150,6 +152,7 @@ function editInfo(id, pic, fname, lname, Age, City, Position, Salary, SDate, Ema
         phoneVal: Phone
     };
 
+    //updating the values
     imgInput.src = pic;
     fName.value = fname;
     lName.value = lname;
@@ -176,6 +179,7 @@ function deleteInfo(index) {
     if (confirm("Are you sure you want to delete?")) {
         originalData.splice(index, 1);
         localStorage.setItem("userProfile", JSON.stringify(originalData));
+        //shallow copy using spread instead of reference
         getData = [...originalData];
         console.log("User deleted. Updated data:", getData);
         showInfo();
@@ -225,19 +229,21 @@ filterData.addEventListener("input", () => {
     if (searchTerm !== "") {
         const filteredData = originalData.filter((item) => {
             const fullName = (item.fName + " " + item.lName).toLowerCase();
-            const city = item.cityVal.toLowerCase();
-            const position = item.positionVal.toLowerCase();
+            // const city = item.cityVal.toLowerCase();
+            // const position = item.positionVal.toLowerCase();
 
             return (
-                fullName.includes(searchTerm) ||
-                city.includes(searchTerm) ||
-                position.includes(searchTerm)
+                fullName.includes(searchTerm)
+                //  || city.includes(searchTerm) ||
+                // position.includes(searchTerm)
             );
         });
 
         getData = filteredData;
+        console.log("Filtered data:", getData);
     } else {
         getData = JSON.parse(localStorage.getItem('userProfile')) || [];
+        // console.log("Filtered data:", getData);
     }
-    console.log("Filtered data:", getData);
+    
 });
