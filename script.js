@@ -25,7 +25,7 @@ var newMemberAddBtn = document.querySelector('.addMemberBtn'),
     table = document.querySelector("table"),
     filterData = document.getElementById("search");
 
-    let isEdit=false, editId;
+let isEdit = false, editId;
 
 // Data from localStorage
 let originalData = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : [];
@@ -190,60 +190,124 @@ function deleteInfo(index) {
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    console.log("Form submitted");
+    console.log("Form submit clicked");
 
-    const information = {
-        id: Date.now(),
-        picture: imgInput.src == undefined ? "./img/pic1.png" : imgInput.src,
-        fName: fName.value,
-        lName: lName.value,
-        ageVal: age.value,
-        cityVal: city.value,
-        positionVal: position.value,
-        salaryVal: salary.value,
-        sDateVal: sDate.value,
-        emailVal: email.value,
-        phoneVal: phone.value
-    };
+    if (firstNameAlert(fName.value) && lastNameAlert(lName.value) && phoneNumberAlert(phone.value) && ageAlert(age.value) && salaryAlert(salary.value)) {
+        const information = {
+            id: Date.now(),
+            picture: imgInput.src == undefined ? "./img/pic1.png" : imgInput.src,
+            fName: fName.value,
+            lName: lName.value,
+            ageVal: age.value,
+            cityVal: city.value,
+            positionVal: position.value,
+            salaryVal: salary.value,
+            sDateVal: sDate.value,
+            emailVal: email.value,
+            phoneVal: phone.value
+        };
 
-    if (!isEdit) {
-        originalData.unshift(information);
-    } else {
-        originalData[editId] = information;
+        if (!isEdit) {
+            originalData.unshift(information);
+        } else {
+            originalData[editId] = information;
+        }
+        getData = [...originalData];
+        console.log("Updated data after form submission:", getData);
+        localStorage.setItem('userProfile', JSON.stringify(originalData));
+
+        darkBg.classList.remove('active');
+        popupForm.classList.remove('active');
+        form.reset();
+
+        showInfo();
     }
-    getData = [...originalData];
-    console.log("Updated data after form submission:", getData);
-    localStorage.setItem('userProfile', JSON.stringify(originalData));
 
-    darkBg.classList.remove('active');
-    popupForm.classList.remove('active');
-    form.reset();
 
-    showInfo();
 });
 
-// Event Listener for filtering data
-filterData.addEventListener("input", () => {
-    const searchTerm = filterData.value.toLowerCase().trim();
+// // Event Listener for filtering data
+// filterData.addEventListener("input", () => {
+//     const searchTerm = filterData.value.toLowerCase().trim();
 
-    if (searchTerm !== "") {
-        const filteredData = originalData.filter((item) => {
-            const fullName = (item.fName + " " + item.lName).toLowerCase();
-            // const city = item.cityVal.toLowerCase();
-            // const position = item.positionVal.toLowerCase();
+//     if (searchTerm !== "") {
+//         const filteredData = originalData.filter((item) => {
+//             const fullName = (item.fName + " " + item.lName).toLowerCase();
+//             // const city = item.cityVal.toLowerCase();
+//             // const position = item.positionVal.toLowerCase();
 
-            return (
-                fullName.includes(searchTerm)
-                //  || city.includes(searchTerm) ||
-                // position.includes(searchTerm)
-            );
-        });
+//             return (
+//                 fullName.includes(searchTerm)
+//                 //  || city.includes(searchTerm) ||
+//                 // position.includes(searchTerm)
+//             );
+//         });
 
-        getData = filteredData;
-        console.log("Filtered data:", getData);
+//         getData = filteredData;
+//         console.log("Filtered data:", getData);
+//     } else {
+//         getData = JSON.parse(localStorage.getItem('userProfile')) || [];
+//         // console.log("Filtered data:", getData);
+//     }
+
+// });
+
+// Validation
+
+
+function firstNameAlert(firstName) {
+    const reg = /^[a-zA-Z]{2,}$/;
+    // console.log(firstName.length);
+
+    if (!reg.test(firstName)) {
+        alert("Please input a valid first name.\nFirst name can only consist of alphabets.");
+        return false;
     } else {
-        getData = JSON.parse(localStorage.getItem('userProfile')) || [];
-        // console.log("Filtered data:", getData);
+        return true;
     }
-    
-});
+}
+
+function lastNameAlert(lastName) {
+    const reg = /^[a-zA-Z]{2,}$/;
+    // console.log(lastName);
+    if (!reg.test(lastName)) {
+        alert("Please input a valid last name. Last name can only consist of alphabets.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function phoneNumberAlert(phoneNumber) {
+    const reg = /^\d{10}$/;
+    if (!reg.test(phoneNumber)) {
+        alert("Please input a phone number. Valid phone number consists of 10 digits only.");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function ageAlert(age) {
+    // console.log(age)
+    if (age >= 18 && age <= 60) {
+        return true;
+    }
+    else {
+        alert("Please input a valid age. Age should be between 18 and 60.")
+        return false;
+    }
+
+}
+
+function salaryAlert(salary) {
+    // console.log(salary)
+    if (salary >= 1000 && salary <= 50000) {
+        return true;
+    }
+    else {
+        alert("Please input a valid salary. Salary should be between 1000 and 50000.")
+        return false;
+    }
+
+}
