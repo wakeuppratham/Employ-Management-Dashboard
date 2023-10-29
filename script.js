@@ -51,19 +51,29 @@ crossBtn.addEventListener('click', () => {
 
 // Event Listener for Image Upload
 uploadimg.onchange = function () {
-    if (uploadimg.files[0].size < 1000000) {   // 1MB = 1000000
-        var fileReader = new FileReader();
+    var allowedTypes = ["image/jpeg", "image/png"];
+    var maxFileSize = 1000000; // 1MB = 1000000
 
-        fileReader.onload = function (e) {
-            var imgUrl = e.target.result;
-            imgInput.src = imgUrl;
-        };
+    if (uploadimg.files.length > 0) {
+        var file = uploadimg.files[0];
 
-        fileReader.readAsDataURL(uploadimg.files[0]);
-    } else {
-        alert("This file is too large!");
+        if (file.size < maxFileSize && allowedTypes.includes(file.type)) {
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (e) {
+                var imgUrl = e.target.result;
+                imgInput.src = imgUrl;
+            };
+
+            fileReader.readAsDataURL(file);
+        } else {
+            alert("Please upload a valid JPEG or PNG file (max 1MB).");
+            // Reset the file input to clear the selected file
+            uploadimg.value = "";
+        }
     }
 };
+
 
 // Function to display user information
 function showInfo() {
